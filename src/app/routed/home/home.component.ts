@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MaterialColorVariants } from '@app/types';
+import { MaterialColorVariants, MaterialButtonsDesignTypes } from '@app/types';
 
 @Component({
   selector: 'app-home',
@@ -8,4 +8,5 @@ import { MaterialColorVariants } from '@app/types';
 })
 export class HomeComponent {
   matBtnColors = MaterialColorVariants;
+  matBtnDesignTypes = MaterialButtonsDesignTypes;
 }
