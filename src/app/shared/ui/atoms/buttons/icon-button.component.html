@@ -1,10 +1,10 @@
 <button
 mat-fab
-matTooltip="Submit Button"
-color="primary"
-aria-label="QR Code Scanner Submit Button"
-type="submit"
-class="qr-code-scanner-button"
+[matTooltip]="tooltip"
+[color]="color"
+[attr.aria-label]="ariaLabel"
+[attr.type]="buttonType"
+[class]="baseStyleClass"
 >
-<mat-icon>qr_code_scanner</mat-icon>
+<mat-icon>{{ icon }}</mat-icon>
 </button>

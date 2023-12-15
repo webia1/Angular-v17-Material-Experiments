@@ -11,6 +11,7 @@ export class IconButtonComponent implements OnInit {
   @Input() ariaLabel = 'EMPTY';
   @Input() buttonType = 'submit';
   @Input() overwritingClass = '';
+  @Input() icon = 'play_circle_outline';
 
   baseStyleClass = 'global-material-btn';
 
