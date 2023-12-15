@@ -1,0 +1,12 @@
+$baseUnit: 16px;
+$baseSpace: 0.625rem;
+
+@mixin space($factor: 1, $property: null) {
+  $space-value: $baseSpace * $factor;
+
+  @if $property {
+    #{$property}: $space-value;
+  } @else {
+    width: $space-value;
+  }
+}

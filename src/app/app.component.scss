@@ -1,0 +1,6 @@
+@import "app-styles.scss";
+
+.app-container {
+  @include space($factor: 3, $property: padding);
+  background-color: $grayLight;
+}
