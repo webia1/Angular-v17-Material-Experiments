@@ -2,7 +2,6 @@
 
 .home-container {
   @include space($factor: 2, $property: padding);
-  border: $space-min solid white;
 
   .buttons-container {
     @include flexRow();

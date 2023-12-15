@@ -1,10 +1,13 @@
 <button
-mat-fab
 [matTooltip]="tooltip"
-[color]="color"
+[attr.color]="color"
 [attr.aria-label]="ariaLabel"
 [attr.type]="buttonType"
 [class]="baseStyleClass"
+[ngClass]="{
+    primary: color === 'primary'
+}"
+[disabled]="false"
 >
 <mat-icon>{{ icon }}</mat-icon>
 </button>

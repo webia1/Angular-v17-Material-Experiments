@@ -1,26 +1,48 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  ElementRef,
+  Renderer2,
+  AfterViewInit,
+} from '@angular/core';
+import { MaterialColorVariants, MaterialButtonsDesignTypes } from '@app/types';
 
 @Component({
   selector: 'app-icon-button',
   templateUrl: './icon-button.component.html',
   styleUrls: ['./icon-button.component.scss'],
-  encapsulation: ViewEncapsulation.None,
 })
-export class IconButtonComponent implements OnInit {
+export class IconButtonComponent implements OnInit, AfterViewInit {
+  @Input() designType = MaterialButtonsDesignTypes.fab;
   @Input() tooltip = 'EMPTY';
-  @Input() color = 'primary';
+  @Input() color = MaterialColorVariants.primary;
   @Input() ariaLabel = 'EMPTY';
   @Input() buttonType = 'submit';
   @Input() overwritingClass = '';
   @Input() icon = 'play_arrow';
+  @Input() disabled = false;
 
   baseStyleClass = 'global-material-btn';
 
-  constructor() {}
+  constructor(
+    private elRef: ElementRef,
+    private renderer: Renderer2,
+  ) {}
 
   ngOnInit(): void {
     if (this.overwritingClass) {
       this.baseStyleClass = this.baseStyleClass + ' ' + this.overwritingClass;
+    }
+  }
+
+  ngAfterViewInit(): void {
+    const button = this.elRef.nativeElement.querySelector('button');
+    if (button && this.designType) {
+      this.renderer.setAttribute(button, this.designType, '');
+      console.log('IconButtonComponent AfterViewInit button', button);
+    } else {
+      console.warn('Button not found or design type not set!');
     }
   }
 }
