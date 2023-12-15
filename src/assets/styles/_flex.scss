@@ -1,0 +1,18 @@
+@import '_base.scss';
+
+@mixin flexRow(
+  $wrap: false,
+  $gap: $space-base,
+  $align: center,
+  $justify: flex-start,
+  $padding: $space-base
+) {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: if($wrap, wrap, nowrap);
+  gap: $gap;
+  align-items: $align;
+  justify-content: $justify;
+  padding: $padding;
+}

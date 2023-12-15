@@ -1,4 +1,16 @@
 <div class="home-container">
     <h2>Home Container</h2>
-    <app-icon-button></app-icon-button>
+    <div class="buttons-container">
+        <app-icon-button
+        tooltip = "Re-used Component"
+        ></app-icon-button>
+        <button
+        mat-fab
+        matTooltip = "Directly Embedded"
+        color = "primary" 
+        class="second-mat-fab-btn"
+        >
+        <mat-icon>play_arrow</mat-icon>
+    </button>
+    </div>
 </div>
