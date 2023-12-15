@@ -1,5 +1,15 @@
-@import "app-styles";
+@import 'app-styles';
 
 .home-container {
-  //
+  @include space($factor: 2, $property: padding);
+  border: $space-min solid white;
+
+  .buttons-container {
+    @include flexRow();
+    border: $space-min solid $debugRed;
+
+    .second-mat-fab-btn {
+      border-radius: $space-quarter;
+    }
+  }
 }

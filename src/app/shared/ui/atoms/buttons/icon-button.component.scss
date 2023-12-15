@@ -1,16 +1,5 @@
 @import "app-styles.scss";
 
 .global-material-btn {
-  /**
-  * Override Material Buttons Border Radius
-  * Make it rectangular instead of circle.
-  * Use rem to not loose global proportions
-  */
-
   border-radius: $std-border-radius !important;
-
-  .primary {
-    background-color: $primaryBgColor;
-    color: $primaryFgColor;
-  }
 }

@@ -12,7 +12,7 @@ export class IconButtonComponent implements OnInit {
   @Input() ariaLabel = 'EMPTY';
   @Input() buttonType = 'submit';
   @Input() overwritingClass = '';
-  @Input() icon = 'play_circle_outline';
+  @Input() icon = 'play_arrow';
 
   baseStyleClass = 'global-material-btn';
 
