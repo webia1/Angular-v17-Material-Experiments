@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { MaterialColorVariants } from '@app/types';
 
 @Component({
   selector: 'app-icon-button',
@@ -8,11 +9,12 @@ import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class IconButtonComponent implements OnInit {
   @Input() tooltip = 'EMPTY';
-  @Input() color = 'primary';
+  @Input() color = MaterialColorVariants.primary;
   @Input() ariaLabel = 'EMPTY';
   @Input() buttonType = 'submit';
   @Input() overwritingClass = '';
   @Input() icon = 'play_arrow';
+  @Input() disabled = false;
 
   baseStyleClass = 'global-material-btn';
 

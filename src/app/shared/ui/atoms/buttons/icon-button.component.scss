@@ -1,5 +1,10 @@
-@import "app-styles.scss";
+@import 'app-styles.scss';
 
 .global-material-btn {
   border-radius: $std-border-radius !important;
+
+  &.primary {
+    background-color: $primaryBgColor;
+    color: $primaryFgColor;
+  }
 }

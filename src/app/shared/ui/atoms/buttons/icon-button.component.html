@@ -5,6 +5,10 @@ mat-fab
 [attr.aria-label]="ariaLabel"
 [attr.type]="buttonType"
 [class]="baseStyleClass"
+[ngClass]="{
+    primary: color === 'primary'
+}"
+[disabled]="false"
 >
 <mat-icon>{{ icon }}</mat-icon>
 </button>
