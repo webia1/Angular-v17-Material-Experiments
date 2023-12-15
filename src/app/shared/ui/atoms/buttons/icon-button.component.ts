@@ -1,9 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-icon-button',
   templateUrl: './icon-button.component.html',
   styleUrls: ['./icon-button.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class IconButtonComponent implements OnInit {
   @Input() tooltip = 'EMPTY';

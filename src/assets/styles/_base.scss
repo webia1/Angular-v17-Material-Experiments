@@ -1,8 +1,14 @@
 $baseUnit: 16px;
-$baseSpace: 0.625rem;
+
+$space-min: calc(1 / 16 * 1rem); // 0.0625rem; // 1px
+$space-quarter: 0.15625rem; // 2.5px
+$space-half: 0.3125rem; // 5px
+$space: 0.625rem; // 10px
+
+$std-border-radius: $space-quarter;
 
 @mixin space($factor: 1, $property: null) {
-  $space-value: $baseSpace * $factor;
+  $space-value: $space * $factor;
 
   @if $property {
     #{$property}: $space-value;
