@@ -14,7 +14,15 @@ export class HomeComponent {
   matBtnDesignTypes = MaterialButtonsDesignTypes;
   constructor() {}
 
-  initiateBtnClick(event: unknown): void {
-    console.log('Child component emitted event: ', event);
+  clickOnDirectlyEmbeddedButton(): void {
+    console.log('Directly embedded button clicked!');
+  }
+
+  handleEmittedEvent(): void {
+    console.log('Event received!');
+  }
+
+  otherClickEvent(): void {
+    console.log('Other click event!');
   }
 }

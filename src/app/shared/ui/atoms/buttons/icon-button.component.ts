@@ -43,12 +43,11 @@ export class IconButtonComponent implements AfterContentInit {
   }
 
   appendButton() {
-    // append button to host element with id="atom-btn"
     const buttonContainer =
       this.elRef.nativeElement.querySelector('#atom-btn');
     const button = this.createButton();
     this.renderer.appendChild(buttonContainer, button);
-    console.log('Button', button);
+    console.log('ButtonContainer', buttonContainer);
   }
 
   createButton() {
@@ -58,14 +57,15 @@ export class IconButtonComponent implements AfterContentInit {
     this.renderer.setAttribute(button, this.designType, '');
     this.renderer.setAttribute(button, 'type', this.buttonType);
     this.renderer.setAttribute(button, 'aria-label', this.ariaLabel);
-    this.renderer.setAttribute(
-      button,
-      'disabled',
-      this.disabled.toString(),
-    );
+
     if (this.color && this.color === 'primary') {
       this.renderer.addClass(button, 'primary');
     }
+
+    if (this.disabled) {
+      this.renderer.setAttribute(button, 'disabled', '');
+    }
+
     // add icon name from this.icon to mat-icon as innerHTML
     this.renderer.addClass(matIcon, 'material-icons');
     this.renderer.appendChild(
@@ -74,6 +74,10 @@ export class IconButtonComponent implements AfterContentInit {
     );
     this.renderer.addClass(button, 'mdc-fab');
     this.renderer.appendChild(button, matIcon);
+    this.renderer.listen(button, 'click', (event) => {
+      // Behandeln Sie das Klick-Event
+      this.btnEventEmitter.emit(event);
+    });
     return button;
   }
 

@@ -3,7 +3,7 @@
   <div class="buttons-container">
     <app-icon-button
       tooltip="Re-used Component"
-      (btnEventEmitter)="initiateBtnClick($event)"
+      (btnEventEmitter)="handleEmittedEvent()"
       [color]="matBtnColors.primary"
       [designType]="matBtnDesignTypes.fab"
     ></app-icon-button>
@@ -12,6 +12,7 @@
       matTooltip="Directly Embedded"
       [color]="matBtnColors.primary"
       class="second-mat-fab-btn"
+      (click)="clickOnDirectlyEmbeddedButton()"
     >
       <mat-icon>play_arrow</mat-icon>
     </button>
