@@ -14,7 +14,7 @@ export class HomeComponent {
   matBtnDesignTypes = MaterialButtonsDesignTypes;
   constructor() {}
 
-  receiveMessage(event: unknown): void {
+  initiateBtnClick(event: unknown): void {
     console.log('Child component emitted event: ', event);
   }
 }

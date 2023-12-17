@@ -3,7 +3,7 @@
   <div class="buttons-container">
     <app-icon-button
       tooltip="Re-used Component"
-      (messageEvent)="receiveMessage($event)"
+      (btnEventEmitter)="initiateBtnClick($event)"
       [color]="matBtnColors.primary"
       [designType]="matBtnDesignTypes.fab"
     ></app-icon-button>

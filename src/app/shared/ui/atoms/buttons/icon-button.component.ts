@@ -1,13 +1,12 @@
 import {
-  AfterContentInit,
-  ChangeDetectorRef,
   Component,
-  ElementRef,
-  EventEmitter,
   Input,
-  OnInit,
   Output,
+  EventEmitter,
+  AfterContentInit,
+  ElementRef,
   Renderer2,
+  ChangeDetectorRef,
 } from '@angular/core';
 import {
   MaterialButtonsDesignTypes,
@@ -20,16 +19,15 @@ import {
   styleUrls: ['./icon-button.component.scss'],
 })
 export class IconButtonComponent implements AfterContentInit {
-  @Input() designType: MaterialButtonsDesignTypes =
-    MaterialButtonsDesignTypes.fab;
-  @Input() tooltip = 'EMPTY';
-  @Input() color = MaterialColorVariants.primary;
   @Input() ariaLabel = 'EMPTY';
   @Input() buttonType = 'submit';
-  @Input() icon = 'play_arrow';
+  @Input() color = MaterialColorVariants.primary;
+  @Input() designType: MaterialButtonsDesignTypes =
+    MaterialButtonsDesignTypes.fab;
   @Input() disabled = false;
-
-  @Output() messageEvent = new EventEmitter<unknown>();
+  @Input() icon = 'play_arrow';
+  @Input() tooltip = 'EMPTY';
+  @Output() btnEventEmitter = new EventEmitter();
 
   baseBtnClass = 'global-material-btn';
 
@@ -56,37 +54,30 @@ export class IconButtonComponent implements AfterContentInit {
   createButton() {
     const button = this.renderer.createElement('button');
     const matIcon = this.renderer.createElement('mat-icon');
-    this.renderer.listen(button, 'click', this.clickHandler);
     this.renderer.addClass(button, this.baseBtnClass);
     this.renderer.setAttribute(button, this.designType, '');
     this.renderer.setAttribute(button, 'type', this.buttonType);
     this.renderer.setAttribute(button, 'aria-label', this.ariaLabel);
-    this.renderer.setAttribute(button, 'matTooltip', this.tooltip);
-
     this.renderer.setAttribute(
       button,
       'disabled',
       this.disabled.toString(),
     );
-
     if (this.color && this.color === 'primary') {
       this.renderer.addClass(button, 'primary');
     }
-
     // add icon name from this.icon to mat-icon as innerHTML
     this.renderer.addClass(matIcon, 'material-icons');
     this.renderer.appendChild(
       matIcon,
       this.renderer.createText(this.icon),
     );
-
     this.renderer.addClass(button, 'mdc-fab');
     this.renderer.appendChild(button, matIcon);
-
     return button;
   }
 
-  clickHandler() {
-    this.messageEvent.emit();
+  btnClick() {
+    this.btnEventEmitter.emit();
   }
 }
