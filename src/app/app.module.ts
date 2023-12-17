@@ -22,9 +22,15 @@ import { AppComponent } from './app.component';
 import { IconButtonComponent } from './shared/ui/atoms/buttons/icon-button.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './routed/home/home.component';
+import { DynamicAttributeDirective } from './shared/directives/dynamic-attribute.directive';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, IconButtonComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    IconButtonComponent,
+    DynamicAttributeDirective,
+  ],
   imports: [
     AppRoutingModule,
     BrowserModule,

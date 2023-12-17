@@ -1,48 +1,92 @@
 import {
+  AfterContentInit,
+  ChangeDetectorRef,
   Component,
+  ElementRef,
+  EventEmitter,
   Input,
   OnInit,
-  ElementRef,
+  Output,
   Renderer2,
-  AfterViewInit,
 } from '@angular/core';
-import { MaterialColorVariants, MaterialButtonsDesignTypes } from '@app/types';
+import {
+  MaterialButtonsDesignTypes,
+  MaterialColorVariants,
+} from '@app/types';
 
 @Component({
   selector: 'app-icon-button',
   templateUrl: './icon-button.component.html',
   styleUrls: ['./icon-button.component.scss'],
 })
-export class IconButtonComponent implements OnInit, AfterViewInit {
-  @Input() designType = MaterialButtonsDesignTypes.fab;
+export class IconButtonComponent implements AfterContentInit {
+  @Input() designType: MaterialButtonsDesignTypes =
+    MaterialButtonsDesignTypes.fab;
   @Input() tooltip = 'EMPTY';
   @Input() color = MaterialColorVariants.primary;
   @Input() ariaLabel = 'EMPTY';
   @Input() buttonType = 'submit';
-  @Input() overwritingClass = '';
   @Input() icon = 'play_arrow';
   @Input() disabled = false;
 
-  baseStyleClass = 'global-material-btn';
+  @Output() messageEvent = new EventEmitter<unknown>();
+
+  baseBtnClass = 'global-material-btn';
 
   constructor(
     private elRef: ElementRef,
     private renderer: Renderer2,
+    private cdr: ChangeDetectorRef,
   ) {}
 
-  ngOnInit(): void {
-    if (this.overwritingClass) {
-      this.baseStyleClass = this.baseStyleClass + ' ' + this.overwritingClass;
-    }
+  ngAfterContentInit() {
+    this.appendButton();
+    this.cdr.detectChanges();
   }
 
-  ngAfterViewInit(): void {
-    const button = this.elRef.nativeElement.querySelector('button');
-    if (button && this.designType) {
-      this.renderer.setAttribute(button, this.designType, '');
-      console.log('IconButtonComponent AfterViewInit button', button);
-    } else {
-      console.warn('Button not found or design type not set!');
+  appendButton() {
+    // append button to host element with id="atom-btn"
+    const buttonContainer =
+      this.elRef.nativeElement.querySelector('#atom-btn');
+    const button = this.createButton();
+    this.renderer.appendChild(buttonContainer, button);
+    console.log('Button', button);
+  }
+
+  createButton() {
+    const button = this.renderer.createElement('button');
+    const matIcon = this.renderer.createElement('mat-icon');
+    this.renderer.listen(button, 'click', this.clickHandler);
+    this.renderer.addClass(button, this.baseBtnClass);
+    this.renderer.setAttribute(button, this.designType, '');
+    this.renderer.setAttribute(button, 'type', this.buttonType);
+    this.renderer.setAttribute(button, 'aria-label', this.ariaLabel);
+    this.renderer.setAttribute(button, 'matTooltip', this.tooltip);
+
+    this.renderer.setAttribute(
+      button,
+      'disabled',
+      this.disabled.toString(),
+    );
+
+    if (this.color && this.color === 'primary') {
+      this.renderer.addClass(button, 'primary');
     }
+
+    // add icon name from this.icon to mat-icon as innerHTML
+    this.renderer.addClass(matIcon, 'material-icons');
+    this.renderer.appendChild(
+      matIcon,
+      this.renderer.createText(this.icon),
+    );
+
+    this.renderer.addClass(button, 'mdc-fab');
+    this.renderer.appendChild(button, matIcon);
+
+    return button;
+  }
+
+  clickHandler() {
+    this.messageEvent.emit();
   }
 }

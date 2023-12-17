@@ -1,18 +1,19 @@
 <div class="home-container">
-    <h2>Home Container</h2>
-    <div class="buttons-container">
-        <app-icon-button
-        tooltip = "Re-used Component"
-        [color] = "matBtnColors.primary" 
-        [designType] = "matBtnDesignTypes.fab"
-        ></app-icon-button>
-        <button
-        mat-fab
-        matTooltip = "Directly Embedded"
-        [color] = "matBtnColors.primary" 
-        class="second-mat-fab-btn"
-        >
-        <mat-icon>play_arrow</mat-icon>
+  <h2>Home Container</h2>
+  <div class="buttons-container">
+    <app-icon-button
+      tooltip="Re-used Component"
+      (messageEvent)="receiveMessage($event)"
+      [color]="matBtnColors.primary"
+      [designType]="matBtnDesignTypes.fab"
+    ></app-icon-button>
+    <button
+      mat-fab
+      matTooltip="Directly Embedded"
+      [color]="matBtnColors.primary"
+      class="second-mat-fab-btn"
+    >
+      <mat-icon>play_arrow</mat-icon>
     </button>
-    </div>
+  </div>
 </div>

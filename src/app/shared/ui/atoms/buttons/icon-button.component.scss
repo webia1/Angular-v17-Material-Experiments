@@ -2,9 +2,25 @@
 
 .global-material-btn {
   border-radius: $std-border-radius !important;
+  background-color: yellow;
 
   &.primary {
     background-color: $primaryBgColor;
     color: $primaryFgColor;
   }
+
+  // &.accent {
+  //   background-color: $accentBgColor;
+  //   color: $accentFgColor;
+  // }
+
+  // &.warn {
+  //   background-color: $warnBgColor;
+  //   color: $warnFgColor;
+  // }
+
+  // &.disabled {
+  //   background-color: $disabledBgColor;
+  //   color: $disabledFgColor;
+  // }
 }

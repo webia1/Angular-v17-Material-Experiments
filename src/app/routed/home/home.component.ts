@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { MaterialColorVariants, MaterialButtonsDesignTypes } from '@app/types';
+import {
+  MaterialButtonsDesignTypes,
+  MaterialColorVariants,
+} from '@app/types';
 
 @Component({
   selector: 'app-home',
@@ -9,4 +12,9 @@ import { MaterialColorVariants, MaterialButtonsDesignTypes } from '@app/types';
 export class HomeComponent {
   matBtnColors = MaterialColorVariants;
   matBtnDesignTypes = MaterialButtonsDesignTypes;
+  constructor() {}
+
+  receiveMessage(event: unknown): void {
+    console.log('Child component emitted event: ', event);
+  }
 }
